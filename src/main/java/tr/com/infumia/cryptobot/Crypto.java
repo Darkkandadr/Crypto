@@ -56,7 +56,7 @@ public final class Crypto {
 
     Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
       PriceApi.refreshPrices();
-      Crypto.log.info("§eCrypto Prices update from API.");
+      Crypto.log.info("§eCrypto Prices updated from API.");
     }, 0, 60, TimeUnit.SECONDS);
     Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
       jda.getPresence().setActivity(Activity.playing(Crypto.messages[Crypto.currentIndex]));
