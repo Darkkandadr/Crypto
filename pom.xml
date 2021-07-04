@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.github.parentpom</groupId>
-    <artifactId>ppom-portlek</artifactId>
-    <version>1.5.0</version>
+    <artifactId>ppom</artifactId>
+    <version>3.4.14</version>
   </parent>
   <groupId>tr.com.infumia</groupId>
   <artifactId>CryptoBot</artifactId>
