@@ -19,7 +19,7 @@ public class Wallet extends ListenerAdapter {
   @Override
   public final void onGuildMessageReceived(final GuildMessageReceivedEvent event) {
     final var args = event.getMessage().getContentRaw().split(" ");
-    if (args[0].equalsIgnoreCase(ConfigManager.prefix + "wallet")) {
+    if (event.getMessage().getContentRaw().equalsIgnoreCase(ConfigManager.prefix + "wallet")) {
       Wallet.getWallet(event.getGuild().getId(), event.getAuthor().getId());
       final var wallet = Wallet.getWallet(event.getGuild().getId(), event.getAuthor().getId());
       final var sortedWallet = Sorter.sortByValue(wallet);
@@ -46,6 +46,9 @@ public class Wallet extends ListenerAdapter {
     final Map<String, Object> allData = UserManager.getAllData(guildId, userId);
     if (allData != null) {
       allData.forEach(walletMap::replace);
+      if (allData.containsKey("InfCoin")){
+        walletMap.put("InfCoin", allData.getOrDefault("InfCoin", 0.0));
+      }
     }
     walletMap.remove("_id");
     return walletMap;
