@@ -57,7 +57,7 @@ public final class Crypto {
     Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
       PriceApi.refreshPrices();
       Crypto.log.info("§eCrypto Prices update from API.");
-    }, 0, 20, TimeUnit.SECONDS);
+    }, 0, 60, TimeUnit.SECONDS);
     Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
       jda.getPresence().setActivity(Activity.playing(Crypto.messages[Crypto.currentIndex]));
       Crypto.currentIndex =(Crypto.currentIndex +1)% Crypto.messages.length;
