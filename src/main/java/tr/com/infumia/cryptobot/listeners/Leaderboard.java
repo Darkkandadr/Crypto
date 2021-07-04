@@ -18,7 +18,6 @@ import tr.com.infumia.cryptobot.util.Sorter;
 
 public class Leaderboard extends ListenerAdapter {
 
-
   @Override
   public final void onGuildMessageReceived(@NotNull final GuildMessageReceivedEvent event) {
     final var message = event.getMessage();
@@ -29,7 +28,7 @@ public class Leaderboard extends ListenerAdapter {
        .setColor(Color.CYAN)
        .setFooter(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy")),
          message.getJDA().getSelfUser().getAvatarUrl());
-      final AtomicInteger size = new AtomicInteger(1);
+      final var size = new AtomicInteger(1);
       Leaderboard.getLeaderboard(guildId).forEach((s, aDouble) -> {
         if (size.get() <= 10) {
           final var user = event.getJDA().retrieveUserById(s).complete();

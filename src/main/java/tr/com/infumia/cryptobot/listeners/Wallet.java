@@ -16,8 +16,6 @@ import tr.com.infumia.cryptobot.util.Sorter;
 
 public class Wallet extends ListenerAdapter {
 
-  // maybe sort by amount etc. -> (i have 800usd , 1 eth , 3 btc) --> USD 800 | BTC 3 | ETH 1
-
   @Override
   public final void onGuildMessageReceived(final GuildMessageReceivedEvent event) {
     final var args = event.getMessage().getContentRaw().split(" ");
@@ -36,7 +34,7 @@ public class Wallet extends ListenerAdapter {
   }
 
   private static HashMap<String, Object> getWallet(@NotNull final String guildId, @NotNull final String userId) {
-    final HashMap<String, Object> walletMap = new HashMap<>();
+    final var walletMap = new HashMap<String, Object>();
     walletMap.put("Ethereum", 0.0);
     walletMap.put("Bitcoin", 0.0);
     walletMap.put("Ripple", 0.0);

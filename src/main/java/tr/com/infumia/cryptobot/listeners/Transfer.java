@@ -17,14 +17,11 @@ public class Transfer extends ListenerAdapter {
 
   @Override
   public final void onGuildMessageReceived(@NotNull final GuildMessageReceivedEvent event) {
-
     final var message = event.getMessage();
     final var user = event.getAuthor();
     final var guildId = event.getGuild().getId();
     final var args = event.getMessage().getContentRaw().split(" ");
 
-
-    // !transfer @Darkkandadr 0.1 Ethereum
     if (args[0].equalsIgnoreCase(ConfigManager.prefix + "transfer")) {
       if (args.length != 4) {
         message.replyEmbeds(Transfer.trueUsageMessage(message)).queue();

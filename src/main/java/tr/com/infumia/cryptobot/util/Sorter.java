@@ -18,6 +18,7 @@ public class Sorter {
         LinkedHashMap::new
       ));
   }
+
   public static HashMap<String, Double> sortByValueDouble(final HashMap<String, Double> map){
     return map.entrySet().stream()
       .sorted(Comparator.comparingDouble(e -> -(double) e.getValue()))

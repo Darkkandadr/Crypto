@@ -25,7 +25,7 @@ public class InviteCommand extends ListenerAdapter {
       message.replyEmbeds(embedMessage).queue();
     }
     if (message.getContentRaw().equalsIgnoreCase(ConfigManager.prefix + "amountofguild")) {
-      final int size = jda.getGuilds().size();
+      final var size = jda.getGuilds().size();
       message.reply(String.valueOf(size)).queue();
     }
   }
