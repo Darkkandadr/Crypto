@@ -1,12 +1,12 @@
 package tr.com.infumia.cryptobot.util;
 
 import com.litesoftwares.coingecko.constant.Currency;
-import com.litesoftwares.coingecko.impl.CoinGeckoApiClientImpl;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.Synchronized;
 import org.jetbrains.annotations.NotNull;
+import tr.com.infumia.cryptobot.Crypto;
 
 public final class PriceApi {
 
@@ -23,7 +23,7 @@ public final class PriceApi {
 
   @Synchronized("PRICES")
   public static void refreshPrices() {
-    final var client = new CoinGeckoApiClientImpl();
+    final var client = Crypto.coinGeckoApiClient;
     client.getPrice("bitcoin", Currency.USD).values().stream().findFirst()
       .flatMap(map -> map.values().stream().findFirst())
       .ifPresent(currency ->

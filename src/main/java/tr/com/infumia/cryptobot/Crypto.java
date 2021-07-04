@@ -1,5 +1,6 @@
 package tr.com.infumia.cryptobot;
 
+import com.litesoftwares.coingecko.CoinGeckoApiClient;
 import com.litesoftwares.coingecko.impl.CoinGeckoApiClientImpl;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -24,6 +25,7 @@ import tr.com.infumia.cryptobot.util.PriceApi;
 public final class Crypto {
 
   public static MongoClient client;
+  public static CoinGeckoApiClient coinGeckoApiClient;
   private static String[] messages = null;
   private static int currentIndex=0;
 
@@ -37,14 +39,14 @@ public final class Crypto {
     ConfigManager.emotes = configManager.getEmotes();
     Crypto.log.info("§aDatabase connection successful.");
     final var token = configManager.getToken();
-    final var client = new CoinGeckoApiClientImpl();
+    Crypto.coinGeckoApiClient = new CoinGeckoApiClientImpl();
     if (token.isEmpty()) {
       throw new IllegalStateException("Bot token does not exist.");
     }
-    if (client.ping().getGeckoSays().isEmpty()) {
+    if (Crypto.coinGeckoApiClient.ping().getGeckoSays().isEmpty()) {
       throw new IllegalAccessError("Bot couldn't connect Cryptocurrency Prices API");
     }
-    Crypto.log.info("§aCryptocurrency Prices API status: " + client.ping().getGeckoSays());
+    Crypto.log.info("§aCryptocurrency Prices API status: " + Crypto.coinGeckoApiClient.ping().getGeckoSays());
     final var jda = JDABuilder.createDefault(token)
       .addEventListeners(new CoinPrices(), new BuyCoin(), new MineCoin(), new SellCoin(), new Wallet(),
         new InviteCommand(), new Transfer(), new Leaderboard())
@@ -53,7 +55,6 @@ public final class Crypto {
       .build()
       .awaitReady();
     Crypto.log.info("§aJDA status: " + jda.getStatus());
-
     Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
       PriceApi.refreshPrices();
       Crypto.log.info("§eCrypto Prices updated from API.");
