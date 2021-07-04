@@ -4,6 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class Formatter {
 
+  public static String format(@NotNull final Double value, final int decimalLength) {
+    return String.format("%,."+ decimalLength + "f", value);
+  }
   public static String formatUSD(@NotNull final Double value) {
     return String.format("%,.2f", value);
   }

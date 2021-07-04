@@ -88,7 +88,8 @@ public class Transfer extends ListenerAdapter {
   private static MessageEmbed trueUsageMessage(@NotNull final Message message) {
     return new EmbedBuilder()
       .setTitle("Wrong Usage")
-      .setDescription("True usage of command: " + ConfigManager.prefix + "transfer **@MentionUser** **amount** **coinName**")
+      .setDescription("True usage of command: " + ConfigManager.prefix +
+        "transfer **@MentionUser** **amount** **coinName**")
       .setColor(Color.ORANGE)
       .setFooter(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy")),
         message.getJDA().getSelfUser().getAvatarUrl())
@@ -114,7 +115,8 @@ public class Transfer extends ListenerAdapter {
                                              @NotNull final Double amount) {
     return new EmbedBuilder()
       .setTitle("You received " + amount + " of " + coinType + " from " + userName)
-      .setDescription("You received **" + amount + "** of " + coinType + " from **" + userName + "** in **" + guildName + "** guild. \n Have a nice day!")
+      .setDescription("You received **" + amount + "** of " + coinType + " from **" + userName + "** in **" +
+        guildName + "** guild. \n Have a nice day!")
       .setColor(Color.GREEN)
       .setFooter(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy")),
         message.getJDA().getSelfUser().getAvatarUrl())

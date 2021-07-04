@@ -33,13 +33,13 @@ public final class Crypto {
     final var mongoClient = MongoClients.create("mongodb://localhost:27017");
     final var configManager = new ConfigManager(mongoClient);
     Crypto.client = mongoClient;
+    Crypto.coinGeckoApiClient = new CoinGeckoApiClientImpl();
     Crypto.messages = new String[]{"Developed by Infumia", "www.infumia.com.tr", "Ethereum", "DogeCoin", "Bitcoin"};
     ConfigManager.prefix = configManager.getPrefix();
     ConfigManager.cooldown = configManager.getCooldown();
     ConfigManager.emotes = configManager.getEmotes();
     Crypto.log.info("§aDatabase connection successful.");
     final var token = configManager.getToken();
-    Crypto.coinGeckoApiClient = new CoinGeckoApiClientImpl();
     if (token.isEmpty()) {
       throw new IllegalStateException("Bot token does not exist.");
     }

@@ -28,7 +28,8 @@ public class Wallet extends ListenerAdapter {
         .setColor(Color.decode("#EC780B"))
         .setFooter(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy")),
           event.getJDA().getSelfUser().getAvatarUrl());
-      sortedWallet.forEach((s, o) -> embedMessage.addField(ConfigManager.emotes.getOrDefault(s, "").toString() + " " + s, Formatter.formatCoins((Double) o), true));
+      sortedWallet.forEach((s, o) -> embedMessage.addField(ConfigManager.emotes.getOrDefault(s, "")
+        .toString() + " " + s, Formatter.formatCoins((Double) o), true));
       event.getMessage().replyEmbeds(embedMessage.build()).queue();
     }
   }

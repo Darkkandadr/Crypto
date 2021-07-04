@@ -85,7 +85,8 @@ public class SellCoin extends ListenerAdapter {
     }
   }
 
-  private static boolean sellCoin(@NotNull final GuildMessageReceivedEvent event, final double value, @NotNull final String coinName){
+  private static boolean sellCoin(@NotNull final GuildMessageReceivedEvent event, final double value,
+                                  @NotNull final String coinName){
     final var guildId = event.getGuild().getId();
     final var userId = event.getAuthor().getId();
     final var coinAmount = UserManager.getCoin(guildId, userId, coinName);

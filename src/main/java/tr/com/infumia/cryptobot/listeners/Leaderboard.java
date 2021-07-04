@@ -43,7 +43,8 @@ public class Leaderboard extends ListenerAdapter {
 
   private static HashMap<String, Double> getLeaderboard(@NotNull final String guildId) {
     final var userList = new HashMap<String, Double>();
-    final var collection = Crypto.client.getDatabase("Guilds").getCollection(guildId);
+    final var collection = Crypto.client.getDatabase("Guilds")
+      .getCollection(guildId);
     collection.find().forEach(user -> {
       final String[] userId = {"INFUMIA was here :)"};
       final double[] userBalance = {0.0};

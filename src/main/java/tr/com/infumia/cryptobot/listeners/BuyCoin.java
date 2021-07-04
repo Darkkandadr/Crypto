@@ -85,7 +85,8 @@ public final class BuyCoin extends ListenerAdapter {
     }
   }
 
-  private static boolean buyCoin(@NotNull final GuildMessageReceivedEvent event, final double value, @NotNull final String coinName){
+  private static boolean buyCoin(@NotNull final GuildMessageReceivedEvent event, final double value,
+                                 @NotNull final String coinName){
     final var guildId = event.getGuild().getId();
     final var userId = event.getAuthor().getId();
     final var hasMoney = UserManager.hasMoney(guildId, userId, coinName, value);

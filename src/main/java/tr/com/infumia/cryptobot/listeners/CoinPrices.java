@@ -19,7 +19,7 @@ public final class CoinPrices extends ListenerAdapter {
       .addField(Emotes.getBitcoin() + " Bitcoin", "**" + prices.get("Bitcoin").toString() + "**", true)
       .addField(Emotes.getEthereum() + " Ethereum", "**" + prices.get("Ethereum").toString() + "**", true)
       .addField(Emotes.getBinanceCoin() + " BinanceCoin", "**" + prices.get("BinanceCoin").toString() + "**", true)
-      .addField(Emotes.getCardano() + " ADA", "**" + prices.get("Cardano").toString() + "**", true)
+      .addField(Emotes.getCardano() + " ADA (Cardano)", "**" + prices.get("Cardano").toString() + "**", true)
       .addField(Emotes.getRipple() + " Ripple", "**" + prices.get("Ripple").toString() + "**", true)
       .addField(Emotes.getDogeCoin() + " DOGE", "**" + prices.get("DogeCoin").toString() + "**", true)
       .setFooter(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy")),

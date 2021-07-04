@@ -26,7 +26,7 @@ public class MineCoin extends ListenerAdapter {
         }
         if ((duration != null ? duration.toSeconds() : 0) > ConfigManager.cooldown || this.cooldown.get(userId) == null){
           final var rangeMin = 0.0;
-          final var rangeMax = 100.0;
+          final var rangeMax = 60.0;
           final var r = new Random();
           final var randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
           final var roundedValue = Math.round(randomValue * 100.0) / 100.0;
