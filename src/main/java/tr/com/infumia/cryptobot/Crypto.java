@@ -63,7 +63,10 @@ public final class Crypto {
       jda.getPresence().setActivity(Activity.playing(Crypto.messages[Crypto.currentIndex]));
       Crypto.currentIndex =(Crypto.currentIndex +1)% Crypto.messages.length;
     }, 0, 5, TimeUnit.SECONDS);
-
+    Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+      Crypto.coinGeckoApiClient = new CoinGeckoApiClientImpl();
+      Crypto.log.info("§aCryptocurrency Prices API status: " + Crypto.coinGeckoApiClient.ping().getGeckoSays());
+    }, 0, 10, TimeUnit.MINUTES);
   }
 
 
