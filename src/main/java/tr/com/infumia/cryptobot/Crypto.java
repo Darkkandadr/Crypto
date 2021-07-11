@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import tr.com.infumia.cryptobot.database.ConfigManager;
 import tr.com.infumia.cryptobot.listeners.BuyCoin;
 import tr.com.infumia.cryptobot.listeners.CoinPrices;
+import tr.com.infumia.cryptobot.listeners.HelpCommand;
 import tr.com.infumia.cryptobot.listeners.InviteCommand;
 import tr.com.infumia.cryptobot.listeners.Leaderboard;
 import tr.com.infumia.cryptobot.listeners.MineCoin;
@@ -49,7 +50,7 @@ public final class Crypto {
     Crypto.log.info("§aCryptocurrency Prices API status: " + Crypto.coinGeckoApiClient.ping().getGeckoSays());
     final var jda = JDABuilder.createDefault(token)
       .addEventListeners(new CoinPrices(), new BuyCoin(), new MineCoin(), new SellCoin(), new Wallet(),
-        new InviteCommand(), new Transfer(), new Leaderboard())
+        new InviteCommand(), new Transfer(), new Leaderboard(), new HelpCommand())
       .setActivity(Activity.watching("Crypto"))
       .setAutoReconnect(true)
       .build()
