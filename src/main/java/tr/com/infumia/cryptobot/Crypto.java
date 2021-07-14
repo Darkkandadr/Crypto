@@ -4,6 +4,12 @@ import com.litesoftwares.coingecko.CoinGeckoApiClient;
 import com.litesoftwares.coingecko.impl.CoinGeckoApiClientImpl;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import javax.security.auth.login.LoginException;
@@ -56,10 +62,10 @@ public final class Crypto {
       .build()
       .awaitReady();
     Crypto.log.info("§aJDA status: " + jda.getStatus());
-    Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+    Executors.newScheduledThreadPool(2).scheduleAtFixedRate(() -> {
       PriceApi.refreshPrices();
       Crypto.log.info("§eCrypto Prices updated from API.");
-    }, 0, 60, TimeUnit.SECONDS);
+    }, 0, 1, TimeUnit.MINUTES);
     Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
       jda.getPresence().setActivity(Activity.playing(Crypto.messages[Crypto.currentIndex]));
       Crypto.currentIndex =(Crypto.currentIndex +1)% Crypto.messages.length;
@@ -68,7 +74,20 @@ public final class Crypto {
       Crypto.coinGeckoApiClient = new CoinGeckoApiClientImpl();
       Crypto.log.info("§aCryptocurrency Prices API status: " + Crypto.coinGeckoApiClient.ping().getGeckoSays());
     }, 0, 10, TimeUnit.MINUTES);
+    Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+      try {
+        Crypto.restartApplication();
+      } catch (final IOException e) {
+        e.printStackTrace();
+      }
+    }, 30, 30, TimeUnit.MINUTES);
   }
 
+  private static void restartApplication() throws IOException {
+    Runtime.
+      getRuntime().
+      exec("cmd /c start \"\" crypto.bat");
+    System.exit(0);
+  }
 
 }
