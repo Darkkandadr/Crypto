@@ -4,18 +4,14 @@ import com.litesoftwares.coingecko.CoinGeckoApiClient;
 import com.litesoftwares.coingecko.impl.CoinGeckoApiClientImpl;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import java.io.File;
 import java.io.IOException;
-import java.lang.management.ManagementFactory;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import javax.security.auth.login.LoginException;
 import lombok.extern.log4j.Log4j2;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import tr.com.infumia.cryptobot.database.ConfigManager;
 import tr.com.infumia.cryptobot.listeners.BuyCoin;
 import tr.com.infumia.cryptobot.listeners.CoinPrices;
@@ -59,6 +55,7 @@ public final class Crypto {
         new InviteCommand(), new Transfer(), new Leaderboard(), new HelpCommand())
       .setActivity(Activity.watching("Crypto"))
       .setAutoReconnect(true)
+      .enableIntents(GatewayIntent.GUILD_MEMBERS)
       .build()
       .awaitReady();
     Crypto.log.info("§aJDA status: " + jda.getStatus());
@@ -87,6 +84,7 @@ public final class Crypto {
     Runtime.
       getRuntime().
       exec("cmd /c start \"\" crypto.bat");
+    Runtime.getRuntime().exit(0);
     System.exit(0);
   }
 
