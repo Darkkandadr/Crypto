@@ -11,6 +11,7 @@ public final class ConfigManager {
 
   public static String prefix;
   public static int cooldown;
+  public static int restartTime;
   public static HashMap<Object, Object> emotes = new HashMap<>();
 
   @NotNull
@@ -106,6 +107,21 @@ public final class ConfigManager {
     }
     first.forEach(ConfigManager.emotes::put);
     return ConfigManager.emotes;
+  }
+
+  public int getRestartTimeInMinutes() {
+    var first = this.configCollection
+      .find(Filters.eq("_id", 5))
+      .first();
+    if (first == null) {
+      first = new Document(new HashMap<>() {{
+        this.put("_id", 5);
+        this.put("restartTime", 30);
+      }});
+      this.configCollection.insertOne(first);
+    }
+    ConfigManager.restartTime = first.getInteger("restartTime", 30);
+    return ConfigManager.restartTime;
   }
 
 }

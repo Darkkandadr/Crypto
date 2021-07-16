@@ -41,6 +41,7 @@ public final class Crypto {
     ConfigManager.prefix = configManager.getPrefix();
     ConfigManager.cooldown = configManager.getCooldown();
     ConfigManager.emotes = configManager.getEmotes();
+    ConfigManager.restartTime = configManager.getRestartTimeInMinutes();
     Crypto.log.info("§aDatabase connection successful.");
     final var token = configManager.getToken();
     if (token.isEmpty()) {
@@ -77,7 +78,7 @@ public final class Crypto {
       } catch (final IOException e) {
         e.printStackTrace();
       }
-    }, 30, 30, TimeUnit.MINUTES);
+    }, ConfigManager.restartTime, ConfigManager.restartTime, TimeUnit.MINUTES);
   }
 
   private static void restartApplication() throws IOException {
