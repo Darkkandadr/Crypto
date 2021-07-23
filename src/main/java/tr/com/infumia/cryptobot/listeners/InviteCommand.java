@@ -18,7 +18,7 @@ public class InviteCommand extends ListenerAdapter {
       final var inviteLink = event.getJDA().getInviteUrl(Permission.ADMINISTRATOR);
       final var embedMessage = new EmbedBuilder()
         .setTitle("Invite Me!")
-        .setDescription("[Click Here]("+ inviteLink +")")
+        .setDescription("[Click Here to Invite]("+ inviteLink +")" + "\n [Vote the Bot](https://top.gg/bot/847455891485360179)")
         .setColor(Color.GREEN)
         .setFooter("Crypto | Developed by Infumia", jda.getSelfUser().getAvatarUrl())
         .build();
