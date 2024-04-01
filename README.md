@@ -1,5 +1,5 @@
 # Crypto
- Crypto currency bot for Discord Servers.
+ Crypto currency bot for Discord Servers. (Java & MongoDB)
  
 A bot that you can mine USD an exchange them with Crypto coins. You can buy, sell and trade your coins with their real time price.
 Bot working as guild based. Each guild has a leaderboard. You can race with your friends to be the richest.
